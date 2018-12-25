@@ -83,7 +83,7 @@ var shader2 = new PIXI.Shader.from(`
 
 `,
 {
-  uSampler2:PIXI.Texture.from('required/assets/SceneRotate.jpg')
+  uSampler2:PIXI.Texture.from('assets/face.png')
 })
 
 
