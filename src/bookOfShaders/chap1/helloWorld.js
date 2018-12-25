@@ -1,30 +1,28 @@
 // please switch to `next` version to see this demo
-
+// https://stackoverflow.com/questions/41785478/converting-pixijs-v3-abstractfilter-to-v4-filter
+// https://www.awwwards.com/a-gentle-introduction-to-shaders-with-pixi-js.html
 var app = new PIXI.Application(800, 600);
 document.body.appendChild(app.view);
 
-var geometry = new PIXI.Geometry()
-.addAttribute('aVertexPosition',  // the attribute name
-              [-100, -100,   // x, y
-                100, -100,   // x, y
-                100 , 100]) // x, y
-
-.addAttribute('aUvs',  // the attribute name
-              [0, 0,  // u, v
-               1, 0,  // u, v
-               1, 1]) // u, v
-
-// var shader = new PIXI.Shader.from(`
-//     void main() {
-//         gl_FragColor = vec4(1.0,0.0,1.0,1.0);
-//     }
-// `)
-
 var shaderCode = `
-    void main() {
-        gl_FragColor = vec4(0.5,0.5,1.0,1.0);
+    precision mediump float;
+
+    varying vec2 vTextureCoord;//The coordinates of the current pixel
+    uniform sampler2D uSampler;//The image data
+
+    void main(void) {
+    gl_FragColor = texture2D(uSampler, vTextureCoord);
+    gl_FragColor.r = 0.0;
     }
 `;
+
+var shaderCode2 = `
+    void main() {
+        gl_FragColor = vec4(0.5,0.5,1.0,0.5);
+    }
+`;
+
+
 
 function CustomFilter(fragmentSource) {
     PIXI.Filter.call(this,
@@ -38,10 +36,12 @@ function CustomFilter(fragmentSource) {
 var simpleShader = new CustomFilter(shaderCode);   
 var face = PIXI.Sprite.from("./../../assets/face.png");
 
-face.position.set(400, 300);
-face.scale.set(2);
-
 face.filters = [simpleShader];
+face.scale.set(0.5);
+face.anchor.set(0.5, 0.5);
+face.position.set(500, 400);
+
+
 
 app.stage.addChild(face);
 
