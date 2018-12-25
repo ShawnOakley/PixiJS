@@ -1,6 +1,8 @@
 // please switch to `next` version to see this demo
 // https://stackoverflow.com/questions/41785478/converting-pixijs-v3-abstractfilter-to-v4-filter
 // https://www.awwwards.com/a-gentle-introduction-to-shaders-with-pixi-js.html
+
+// https://github.com/pixijs/pixi.js/wiki/v4-Creating-Filters
 var app = new PIXI.Application(800, 600);
 document.body.appendChild(app.view);
 
