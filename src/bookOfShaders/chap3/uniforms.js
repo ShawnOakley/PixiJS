@@ -15,11 +15,14 @@ var shaderCode = `
     
     void main() {
         gl_FragColor = texture2D(uSampler, vTextureCoord);
-        gl_FragColor.r = abs(sin(u_time)) * gl_FragColor.r;
-        gl_FragColor.g = u_time * gl_FragColor.g;
-        gl_FragColor.g = -u_time * gl_FragColor.g;
+        gl_FragColor.r = sin(u_time* 0.3) * gl_FragColor.r;
+        gl_FragColor.g = sin(u_time* 0.4) * gl_FragColor.g;
+        gl_FragColor.b = -sin(u_time* 0.2)* gl_FragColor.b;
     }
 `;
+
+// Above code checks for '0' value (i.e., black) and doesn't apply color my multiplying
+// with time uniform
 
 var simpleShader = new PIXI.Filter(null, shaderCode, {u_time: 0});   
 var face = PIXI.Sprite.from("./../../assets/face.png");
@@ -30,8 +33,9 @@ face.anchor.set(0.5, 0.5);
 face.position.set(500, 400);
 
 app.stage.addChild(face);
-
+var time = 0
 app.ticker.add(function(delta) {
+    time += 0.1
     face.rotation += 0.01;
-    simpleShader.uniforms.u_time = performance.now();
+    simpleShader.uniforms.u_time = time;
 });
