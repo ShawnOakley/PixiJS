@@ -19,7 +19,9 @@ var shaderCode = `
     void main() {
         vec2 st = gl_FragCoord.xy/vec2(500, 500);
 
-        float y = pow(st.x,5.0);
+        // Step will return 0.0 unless the value is over 0.5,
+        // in that case it will return 1.0
+        float y = step(0.5,st.x);
 
         vec3 color = vec3(y);
 

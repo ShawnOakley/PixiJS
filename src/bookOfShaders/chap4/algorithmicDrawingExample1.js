@@ -1,4 +1,5 @@
 // https://github.com/pixijs/pixi.js/wiki/v4-Creating-Filters
+// https://thebookofshaders.com/05/
 
 var app = new PIXI.Application(1000, 1000);
 document.body.appendChild(app.view);

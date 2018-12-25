@@ -19,7 +19,8 @@ var shaderCode = `
     void main() {
         vec2 st = gl_FragCoord.xy/vec2(500, 500);
 
-        float y = pow(st.x,5.0);
+        // Smooth interpolation between 0.1 and 0.9
+        float y = smoothstep(0.1,0.9,st.x);
 
         vec3 color = vec3(y);
 
