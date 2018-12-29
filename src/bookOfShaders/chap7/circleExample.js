@@ -1,5 +1,5 @@
 // https://github.com/pixijs/pixi.js/wiki/v4-Creating-Filters
-// https://thebookofshaders.com/06/
+// https://thebookofshaders.com/07/
 
 var app = new PIXI.Application(1000, 1000);
 document.body.appendChild(app.view);
@@ -24,8 +24,9 @@ var shaderCode = `
     }
 
     void main(){
-        vec2 st = gl_FragCoord.xy/u_resolution.xy;
-
+        // vec2 st = gl_FragCoord.xy/u_resolution;
+        vec2 st = gl_FragCoord.xy/vec2(500, 500);
+        
         vec3 color = vec3(circle(st,0.9));
 
         gl_FragColor = vec4( color, 1.0 );

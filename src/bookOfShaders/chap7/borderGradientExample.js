@@ -1,5 +1,5 @@
 // https://github.com/pixijs/pixi.js/wiki/v4-Creating-Filters
-// https://thebookofshaders.com/06/
+// https://thebookofshaders.com/07/
 
 var app = new PIXI.Application(1000, 1000);
 document.body.appendChild(app.view);
@@ -17,7 +17,8 @@ var shaderCode = `
     uniform float u_time;
 
     void main(){
-        vec2 st = gl_FragCoord.xy/u_resolution;
+        // vec2 st = gl_FragCoord.xy/u_resolution;
+        vec2 st = gl_FragCoord.xy/vec2(500, 500)
         float pct = 0.0;
 
         // a. The DISTANCE from the pixel to the center
